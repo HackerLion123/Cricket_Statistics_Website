@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
+		<!--<link rel="stylesheet" href="../../static/css/style.css" type="text/css"/>-->
+		<title>index</title>
+		<style>
+			html {
+ 			 font-family: sans-serif;
+  			 line-height: 1.15;
+  			-webkit-text-size-adjust: 100%;
+  			-ms-text-size-adjust: 100%;
+  			-ms-overflow-style: scrollbar;
+  			-webkit-tap-highlight-color: transparent;
+			}
+
+ 		.content{
+    		background-color: #ddd;
+    		padding: 10px;
+    		height: 100%; 
+		}
+		
+		.nav a {
+    		float: left;
+    		display: block;
+    		color: #f2f2f2;
+    		text-align: center;
+    		padding: 25px 12px;
+    		text-decoration: none;
+		}
+
+		.nav h1{
+			display: block;
+			float: left;
+			font-size:3ex;
+			color:white;
+			padding:14px 10px
+		}
+
+		.nav{
+			overflow: hidden;
+			background-color: black;
+		}
+
+		</style>
+	</head>
+
+	<body>
+		<div class="page-header">
+			<img  src="../../static/images/1.jpg" width="1360" height="150" >
+			<div class="nav">
+				<h1>Cricket Statistics | </h1>
+				<a href="/mysite/index.html" >Home</a>  
+				<a href="/mysite/Livescore/livescore.html" >LiveScore</a>
+				<a href="/mysite/match/matches.html">Match</a>
+				<a href="" >Compare</a>
+			</div>
+		</div>
+		<div class="content">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</body>	
+</html>

@@ -1,0 +1,73 @@
+{% extends "header.html" %}
+
+{% block content %}
+	<style>
+
+	table{
+		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    	border-collapse: collapse;
+    	width: 35%;
+	}
+	td,th{
+		border: 1px solid black;
+		border-collapse:collapse;
+    	padding: 8px;
+	}
+	</style>
+	<h2>{{name}}</h2><h6>{{team}}</h6></br>
+	<div>
+		<h5>Batting Career</h5></br>
+		<table>
+			<tr>	
+				<th>Runs</th>
+				<td>{{Runs}}</td>
+			</tr>
+			<tr>
+				<th>Fiftys</th>
+				<td>{{fiftys}}</td>
+			</tr>
+			<tr>
+				<th>Hundreds</th>
+				<td>{{hundreds}}</td>
+			</tr>
+			<tr>
+				<th>Matchplayed</th>
+				<td>{{matchplayed}}</td>
+			</tr>
+			<tr>
+				<th>Average</th>
+				<td>{{average}}</td>
+			</tr>
+			<tr>
+				<th>Run_rate</th>
+				<td>{{run_rate}}</td>
+			</tr>
+			<tr>
+				<th>HighScore</th>
+				<td>{{HighScore}}</td>
+			</tr>
+		</table>
+	<div>
+	<div>
+		</br></br>
+		<h5>Bowling Career</h5></br>
+		<table>
+			<tr>	
+				<th>Overs</th>
+				<td>{{overs}}</td>
+			</tr>
+			<tr>
+				<th>Wickets</th>
+				<td>{{wickets}}</td>
+			</tr>
+			<tr>
+				<th>Economy</th>
+				<td>{{economy}}</td>
+			</tr>
+			<tr>
+				<th>Best-Streak</th>
+				<td>{{wicket_streak}}</td>
+			</tr>
+		</table>
+	<div>
+{% endblock %}

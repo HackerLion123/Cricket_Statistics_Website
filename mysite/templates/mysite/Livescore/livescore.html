@@ -1,0 +1,20 @@
+{% extends "header.html" %}
+
+{% block content %}
+	<style>
+		h4{
+			background-color:white;
+		}
+	</style>
+	<!--<p>{{matches}}</p>-->
+	{% for key,m in matches.items %}
+		<h4>{{m.matchinfo.srs}}</h4>
+		<div>
+			<!--<p>{{m.matchinfo}}</p>-->
+			<a href=""><h5>{{m.matchinfo.matchdesc}}</h5></a>
+			<h6>{{m.matchinfo.mnum}}</h6>
+			<p>{{m.matchinfo.status}}</p></br>
+		</div>	
+	{% endfor %}
+{% endblock %}
+{% include "footer.html" %}

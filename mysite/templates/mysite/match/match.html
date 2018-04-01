@@ -1,0 +1,180 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+<style>
+td,th{
+	border: 1px solid black;
+	border-collapse:collapse;
+    padding: 8px;
+}
+
+table{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+}
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background:rbg(255,0,0,0.7);
+    color: white;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+h6{
+	color:black;
+	opacity:0.8;
+}
+
+
+.tab button {
+    background-color: inherit;
+    float: left;
+	color:green;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgba(255,0,0,.65);
+    color: white;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+
+</style>
+
+	<div> 
+		<h2 >{{team1}} vs {{team2}}</h2>
+		<h6> {{type}}  Match</h6> 
+	</div>
+		<div class="tab">
+			<button class="tablinks" onclick="openTeam(event,'team1')">{{team1}}</button>
+			<button class="tablinks" onclick="openTeam(event,'team2')">{{team2}}</button>
+		</div>
+		<div id="team1" class="tabcontent">
+			</br>
+			<h5>{{team1}}  Batting</h5>
+			<table>
+				<tr>
+					<th>Player  </th>
+					<th>R  </th>
+					<th>B  </th>
+					<th>4s  </th>
+					<th>6s  </th>
+				</tr>
+				{% for p in batting1 %}
+				<tr>
+					{% for d in p %}
+						<td><a href="/player/{{d}}">{{d}}</a></td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</table>
+			</br></br>
+			<h5>{{team2}}  Bowling</h5>
+			<table>
+				<tr>
+					<th>Player  </th>
+					<th>Overs  </th>
+					<th>Wickets  </th>
+					<th>Maiden  </th>
+					<th>Runs  </th>
+				</tr>
+				{% for p in bowling2 %}
+				<tr>
+					{% for d in p %}
+						<td><a href="/player/{{d}}">{{d}}</a></td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		<div id="team2" class="tabcontent">
+			</br>
+			<h5>{{team2}}Batting</h5>
+			<table>
+				<tr>
+					<th>Player  </th>
+					<th>R  </th>
+					<th>B  </th>
+					<th>4s  </th>
+					<th>6s  </th>
+				</tr>
+				{% for p in batting2 %}
+				<tr>
+					{% for d in p %}
+						<td><a href="/player/{{d}}">{{d}}</a></td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</table>
+			</br></br>
+			<h5>{{team1}}  Bowling</h5>
+			<table>
+				<tr>
+					<th>Player  </th>
+					<th>Overs  </th>
+					<th>Wickets  </th>
+					<th>Maiden  </th>
+					<th>Runs  </th>
+				</tr>
+				{% for p in bowling1 %}
+				<tr>
+					{% for d in p %}
+						<td><a href="/player/{{d}}">{{d}}</a></td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		<script>
+			function openTeam(evt, teamName) {
+				var i, tabcontent, tablinks;
+				tabcontent = document.getElementsByClassName("tabcontent");
+				for (i = 0; i < tabcontent.length; i++) {
+					tabcontent[i].style.display = "none";
+				}
+				tablinks = document.getElementsByClassName("tablinks");
+				for (i = 0; i < tablinks.length; i++) {
+					tablinks[i].className = tablinks[i].className.replace(" active", "");
+				}
+				document.getElementById(teamName).style.display = "block";
+				evt.currentTarget.className += " active";
+			}
+		</script>
+{% endblock %}
+
+{% include "footer.html" %}

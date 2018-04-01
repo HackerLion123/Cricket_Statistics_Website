@@ -1,0 +1,98 @@
+{% extends "header.html" %}
+
+{% block content %}
+	<style>
+		.my{
+			height:400px;
+		}
+		.container{
+			text-align: center;
+    		color: white;
+			position: relative;
+		}
+		.top-left {
+			color:white;
+    		position: absolute;
+    		top: 8px;
+    		left: 16px;
+		}
+
+		.top-right {
+			color:white;
+    		position: absolute;
+    		top: 8px;
+    		right: 16px;
+		}
+	
+		.bottom-right {
+    		position: absolute;
+    		bottom: 8px;
+ 		    right: 16px;
+		}
+	</style>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<div class="con w3-display-container">
+		<div class="w3-display-container mySlides">
+	
+  	 		<img class="my" src="../../static/images/2.jpg" style="width:100%">
+	 		<div class="w3-display-topright w3-large w3-container w3-padding-10 w3-green">
+    			Home
+  			</div>
+		</div>
+		<div class="w3-display-container mySlides">
+ 	 		<img class="my" src="../../static/images/3.jpg" style="width:100%">
+	 		<div class="w3-display-topright w3-large w3-container w3-padding-10 w3-green">
+    			Live Scores
+  			</div>
+		</div>
+		<div class="w3-display-container mySlides">
+  	 		<img class="my" src="../../static/images/7.jpeg" style="width:100%">
+	 		<div class="w3-display-topright w3-large w3-container w3-padding-10 w3-green">
+    			Matches
+ 			 </div>
+		</div>
+		<div class="w3-display-container mySlides">
+  		 	<img class="my" src="../../static/images/5.jpg" style="width:100%">
+			<div class="w3-display-topright w3-large w3-container w3-padding-10 w3-green">
+    			Compare
+  			</div>
+		</div>
+  	 	<button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+  	 	<button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+	</div>
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 8000); // Change image every 2 seconds
+}
+
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+{% endblock %}
+{% include "footer.html" %}
