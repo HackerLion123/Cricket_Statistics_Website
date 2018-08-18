@@ -3,9 +3,12 @@
 {% block content %}
 	<style>
 		h4{
+			padding-top:10px;
+			border-left:4px solid #00F700;
 			background-color:white;
 		}
 	</style>
+<div class="content">
 	<!--<p>{{matches}}</p>-->
 	{% for key,m in matches.items %}
 		<h4>{{m.matchinfo.srs}}</h4>
@@ -16,5 +19,6 @@
 			<p>{{m.matchinfo.status}}</p></br>
 		</div>	
 	{% endfor %}
+</div>
 {% endblock %}
 {% include "footer.html" %}

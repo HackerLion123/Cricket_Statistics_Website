@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ScoreBoard</title>
+
+    <link rel="stylesheet" type="text/css" href="A:\Sem 6\OOAD proj\website\Cricket original\multiple box\search edited.css">
+
+
+    <link rel="stylesheet" href="css/blueTheme.css"/> 
+
+  </head>
+  <body background="mountain_lion_wallpaper.jpg">
+    <!--Whole Container -->
+    <div class="rca-container">
+
+      <!--Logo Holder-->
+      <!--Widget Outer-->
+      <div class="rca-row">
+        <div class="rca-column-12">
+          <!--Widget Inner -->
+          <div class="rca-menu-scroll rca-left-border">
+            <ul class="rca-season-list">
+              <li>
+                <a href="A:\Sem 6\OOAD proj\website\reedited website\home.html">
+                  HOME
+                </a>
+              </li>
+              <li>
+                <a href="A:\Sem 6\OOAD proj\website\cricket for matches page\index.html">
+                  MATCHES
+                </a>
+              </li>
+              <li>
+                <a href="A:\Sem 6\OOAD proj\website\cricket for matches page\index.html">
+                  TEAMS
+                </a>
+              </li>
+              <li>
+                <a href="A:\Sem 6\OOAD proj\website\cricket for comparision page -\index.html">
+                  COMPARISION
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div><br/><br/>
+      <div class="search">
+        
+			<!---&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--->&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="search" placeholder="type player" value="" />             
+		  <!---&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;--->
+  <input type="search" placeholder="type player" value="" />           
+			<!----&nbsp;&nbsp;&nbsp;&nbsp;--->
+  <input type="search" placeholder="type player" value="" />             
+			<!---&nbsp;&nbsp;&nbsp;&nbsp;--->
+  <input type="search" placeholder="type player" value="" /> 
+</div>
+			
+<div class="button"><br />
+			&nbsp;&nbsp;&nbsp;
+  <input type="button" id="b" value="add">
+  <input type="button" id="b" value="add">
+  <input type="button" id="b" value="add">
+  <input type="button" id="b" value="add">
+			</div>
+			<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button class="butt">Compare</button>
+      <!--Widget Outer-->
+      <div class="rca-row">
+        <!--Widget Inner -->
+        <div class="rca-column-4">
+          <!--Live Season-->
+          <div class="rca-menu-widget rca-live-season rca-left-border"> </div>
+        </div>
+        
+        <!--Widget Inner -->
+        <div class="rca-column-4">
+          <!--Upcoming Match-->
+          <div class="rca-menu-widget rca-left-border"> </div>
+        </div>
+
+        <!--Widget Inner -->
+        <div class="rca-column-4">
+          <!--Upcoming Match-->
+          <div class="rca-menu-widget rca-left-border"> </div>
+        </div>
+      </div>
+
+      <div class="rca-row">
+        <div class="rca-column-12">
+          <div class="rca-blog-image"> </div>
+        </div>
+      </div>
+      <div class="rca-row">
+        <div class="rca-column-3">
+          <!--Match Series-->
+          
+          <div class="rca-blog-image"> </div>
+        </div>
+</div>
+</div>
+
+      <div class="rca-row">
+        <div class="rca-column-12"> </div>
+      </div>
+
+
+      <div class="rca-row">
+        <div class="rca-column-8"> </div>
+</div>
+    </div>
+
+   <script>
+      function showTab(event) {
+        var sourceParent = event.parentElement.parentElement;
+        var sourceChilds = sourceParent.getElementsByClassName("rca-tab-content");
+        var sourceLinkParent = sourceParent.getElementsByClassName("rca-tab-link");
+        for (var i=0; i < sourceChilds.length; i++) {
+          sourceChilds.item(i).classList.remove("active");
+        }
+        for (var i=0; i < sourceLinkParent.length; i++) {
+          sourceLinkParent.item(i).classList.remove("active");
+        }
+        var dataTab= event.getAttribute("data-tab");
+
+        event.classList.add("active");
+        // document.getElementById(dataTab).className = tabClass + ' active';
+        document.getElementById(dataTab).className += ' active';
+      }
+
+    </script>
+
+  </body>
+</html>

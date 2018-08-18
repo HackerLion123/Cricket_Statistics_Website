@@ -1,6 +1,7 @@
 {% extends "header.html" %}
 
 {% block content %}
+<div class="content">
 	<div> <h2 >Hi, Welcome to Django</h2> </div>
 	{% if matches %}
 			<ul>
@@ -9,5 +10,6 @@
 				{% endfor %}
 			</ul>
 	{% endif %}
+</div>
 {% endblock %}
 {% include "footer.html" %}

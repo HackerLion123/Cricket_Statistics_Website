@@ -1,0 +1,10 @@
+/* _GlobalPrefix_ */
+/* _Module_:sfqVZ */
+try{
+s_fk("sfqVZ");var s_e9=function(a){s_jP.call(this,a.Wn);var b=this;this.$=null;s_Oya(this)||(this.$=s_l(document,"scroll",function(){b.Uk()}))};s_a(s_e9,s_jP);s_e9.Xf=s_jP.Xf;s_e9.prototype.f5=function(){this.$&&(s_kc(this.$),this.$=null)};s_kP(s_e9.prototype,"k4Iseb",function(){return this.f5});s_e9.prototype.Uk=function(){s_Oya(this)&&this.$&&(s_kc(this.$),this.$=null)};
+var s_Oya=function(a){var b=window.innerHeight+100;a=a.va("haAclf").el();if(a.getBoundingClientRect().top<b){b=a.getElementsByTagName("img");for(a=0;a<b.length;a++){var c=b[a],d=s_A(c,"src");d&&(c.src=d,s_zG(c,"src"))}return!0}return!1};s_$R(s_ywa,s_e9);
+
+s__i("sfqVZ");s_fl();
+}catch(e){_DumpException(e)}
+/* _GlobalSuffix_ */
+// Google Inc.

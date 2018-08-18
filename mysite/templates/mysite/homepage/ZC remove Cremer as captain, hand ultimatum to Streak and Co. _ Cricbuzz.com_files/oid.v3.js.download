@@ -1,0 +1,506 @@
+// statistics chid
+
+forceChidTo = (typeof forceChidTo  == "undefined") ? null : forceChidTo;
+forceOrganicChidTo = (typeof forceOrganicChidTo == "undefined") ? null : forceOrganicChidTo;
+
+var chidObj = {
+
+    chID : null,
+    crID: null,
+    offerID : "",
+    statisticsHost : "http://www.whizstats.com",
+    clientVersion 	  : "",
+    clientBuildNumber : "",
+    browserCode : "",
+    browserLang : "",
+    osCode : "",
+    chidPixel : null,
+    COOKIE_EXPIRATION_DAYS : 5 * 365,
+    ORGANIC_CHID_THRESHOLD : 100,
+
+    refToChid :
+    {
+        '.google.':          20,
+        '.yahoo.':           21,
+        '.aol.':             22,
+        '.msn.':             23,
+        '.live.':            24,
+        '.ask.':             25,
+        '.mywebsearch.':     26,
+        '.virgilio.':        27,
+        '.onet.':            28,
+        '.altavista.':       29,
+        '.baidu.':           30,
+        '.t-online.':        31,
+        '.bing.':            32,
+        '.filehippo.':       40,
+        '.downloadtr.':      41,
+        'download.cnet.com': 42,
+        '.softpile.':        43,
+        '.wikipedia.':       44,
+        '.download.net.pl':  45,
+        '.pobieralnia.':     46,
+        '.brothersoft.':     47,
+        '.facebook.':        62
+    },
+
+    classIdsForClient :
+    {
+        'IMIMWC': "7C3B01BC-53A5-48A0-A43B-0C67731134B9",
+        'BSIMWC': "7C3B01BC-53A5-48A0-A43B-0C67731134BA",
+        'SHIMWC': "7C3B01BC-53A5-48A0-A43B-0C67731134BB",
+        'LPIMWC': "7C3B01BC-53A5-48A0-A43B-0C67731134BC"
+    },
+
+    EVENT_TYPE_MAP :
+    {
+        'hit'                       : {'eventId' : 1,
+            'eventTimeout' : 0},
+        'subsequentHit'             : {'eventId' : 2,
+            'eventTimeout' : 0},
+        'download'                  : {'eventId' : 3,
+            'eventTimeout' : 500},
+        'subsequentDownload'        : {'eventId' : 4,
+            'eventTimeout' : 500},
+        'installSuccess'            : {'eventId' : 5,
+            'eventTimeout' : 0},
+        'registration'              : {'eventId' : 6,
+            'eventTimeout' : 0},
+        'search'                    : {'eventId' : 7,
+            'eventTimeout' : 0},
+        'uninstall'                 : {'eventId' : 8,
+            'eventTimeout' : 0},
+        'installUpdate'             : {'eventId' : 9,
+            'eventTimeout' : 0},
+        'searchAcceptance'          : {'eventId' : 10,
+            'eventTimeout' : 0},
+        'chromeStoreWndCancel'      : {'eventId' : 24,
+            'eventTimeout' : 0},
+        'chromeStoreWndShown'       : {'eventId' : 25,
+            'eventTimeout' : 0},
+        'chromeStoreWndInstall'     : {'eventId' : 26,
+            'eventTimeout' : 0},
+        'pageLoaded'                : {'eventId' : 27,
+            'eventTimeout' : 0},
+        'redirectedChrWebStore'     : {'eventId' : 28,
+            'eventTimeout' : 0},
+        'errCode'                   : {'eventId' : 29,
+            'eventTimeout' : 0},
+        'initiatedWebstoreRedirect' : {'eventId' : 30,
+            'eventTimeout' : 0}
+    },
+
+    browserTypes :
+    {
+        'msie 6'    : 1,
+        'msie 7'    : 2,
+        'trident/4' : 3, //IE8
+        'firefox/2' : 4,
+        'firefox/3' : 5,
+        'chrome'    : 6,
+        'safari'    : 7,
+        'opera'     : 8,
+        'opr/'      : 8,
+        'unknown'   : 9,
+        'chrome/2'  : 10,
+        'chrome/3'  : 11,
+        'chrome/4'  : 12,
+        'chrome/5'  : 13,
+        'chrome/6'  : 14,
+        'chrome/7'  : 15,
+        'trident/5' : 16, //IE9
+        'chrome/8'  : 17,
+        'chrome/9'  : 18,
+        'chrome/10' : 19,
+        'firefox/4' : 20,
+        'chrome/11' : 21,
+        'chrome/12' : 22,
+        'firefox/5' : 23
+    },
+
+    addLoadEvent : function (func)
+    {
+        var oldOnload = window.onload;
+        if (typeof window.onload != 'function') {
+            window.onload = func;
+        } else {
+            window.onload = function() {
+                if (oldOnload) {
+                    oldOnload();
+                }
+                func();
+            }
+        }
+    },
+
+    getURLParam : function (name, url)
+    {
+        if (!url)
+            url = window.location.href;
+
+        name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+        var regexS = "[\\?&]"+name+"=([^&#]*)";
+        var regex = new RegExp( regexS );
+        var results = regex.exec( url );
+        if( results == null )
+            return null;
+        else
+            return results[1];
+    },
+
+    setCookie : function (cookieName,value,expiredays,path,domain)
+    {
+        if (!domain) {
+            var hostDomain  = document.location.hostname;
+            var domainParts = hostDomain.split('.');
+            domain = (domainParts.length <= 2) ? '.' + hostDomain : '.' + (domainParts.slice(domainParts.length - 2)).join('.');
+        }
+
+        if (!path)
+            path = "/";
+
+        var exdate=new Date();
+        exdate.setDate(exdate.getDate()+expiredays);
+        document.cookie=cookieName+ "=" +escape(value)+
+            ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())+
+            ((path) ? ";path=" + path : "")+
+            ((domain) ? ";domain=" + domain : "");
+    },
+
+    getCookie : function (cookieName)
+    {
+        if (document.cookie.length>0)
+        {
+            c_start=document.cookie.indexOf(cookieName + "=");
+            if (c_start!=-1)
+            {
+                c_start=c_start + cookieName.length+1;
+                c_end=document.cookie.indexOf(";",c_start);
+                if (c_end==-1) c_end=document.cookie.length;
+                return unescape(document.cookie.substring(c_start,c_end));
+            }
+        }
+        return null;
+    },
+
+    getbrowserCode : function ()
+    {
+        var nobrowserCode = 0;
+
+        var userAgent = navigator.userAgent.toLowerCase();
+        //var version	  = (userAgent.match( /.+(?:rv|it|ra|ie|me)[\/: ]([\d.]+)/ ) || [])[1];
+
+        var code = this.browserTypes['unknown'];
+
+        for(key in this.browserTypes)
+        {
+            if (userAgent.match(key))
+            {
+                code = this.browserTypes[key];
+            }
+        }
+
+        return code ? code : nobrowserCode;
+    },
+
+    getOSCode : function ()
+    {
+        var userOS    = navigator.userAgent.toLowerCase();
+        var osVersion = 0;
+
+        if (userOS != null)
+        {       
+            if (userOS.indexOf("windows nt 10.0") != -1) // Win 10
+                osVersion = 10;
+            else if ((userOS.indexOf("windows nt 6.2") != -1) || (userOS.indexOf("windows nt 6.3") != -1)) // Win 8, 8.1 
+                osVersion = 8;
+            else if (userOS.indexOf("windows nt 6.1") != -1) // Win 7
+                osVersion = 6;
+            else if ((userOS.indexOf("windows nt 6.0") != -1) || (userOS.indexOf("windows nt 6") != -1)) // Win Vista
+                osVersion = 4;
+            else if (userOS.indexOf("windows nt 5.2") != -1) // Win XP 64
+                osVersion = 3;
+            else if (userOS.indexOf("windows nt 5.1") != -1) // Win XP
+                osVersion = 2;
+            else if ((userOS.indexOf("windows nt 5") != -1) || (userOS.indexOf("windows nt 5.0") != -1)) // Win 2000
+                osVersion = 1;
+        }
+
+        if (osVersion == 4)
+        {
+            var x64 = false;
+
+            if (userOS.match(/Wow64/gi))
+                x64 = true;
+            else if (userOS.match(/Win64/gi))
+                x64 = true;
+
+            if (x64 == true)
+                osVersion = 5; // Vista x64
+        }
+
+        return osVersion;
+    },
+
+    getDefaultByRef : function ()
+    {
+        var ref = document.referrer.toString();
+
+        for(key in this.refToChid)
+        {
+            if (ref.indexOf(key) > 0)
+            {
+                var chid = this.refToChid[key];
+                this.setCookie("chid_dl", chid, this.COOKIE_EXPIRATION_DAYS, "/");
+                return this.refToChid[key];
+            }
+        }
+
+        return null;
+    },
+
+    getIMWC : function (offerID)
+    {
+        if (offerID)
+        {
+            switch(offerID)
+            {
+                case 1:
+                {
+                    if (typeof(IMIMWC) == "object")
+                        return IMIMWC;
+                }
+
+                case 2:
+                {
+                    if (typeof(BSIMWC) == "object")
+                        return BSIMWC;
+                }
+
+                case 3:
+                {
+                    if (typeof(SHIMWC) == "object")
+                        return SHIMWC;
+                }
+
+                case 4:
+                {
+                    if (typeof(LPIMWC) == "object")
+                        return LPIMWC;
+                }
+
+                default:
+                    return null;
+            }
+        }
+
+        return null;
+    },
+
+    addListener : function (element, type, expression, bubbling)
+    {
+        bubbling = bubbling || false;
+
+        if(window.addEventListener)	{ // Standard
+            element.addEventListener(type, expression, bubbling);
+            return true;
+        } else if(window.attachEvent) { // IE
+            element.attachEvent("on" + type, expression);
+            return true;
+        } else return false;
+    },
+
+    setChID : function (defaultChidID)
+    {
+        this.chID = this.getURLParam("chid");
+
+        if (!this.chID)
+        {
+            this.chID = this.getDefaultByRef();
+        }
+
+        if (!this.chID)
+        {
+            this.chID = this.getCookie("chid_dl");
+        }
+
+        if (forceOrganicChidTo !== null && (this.chID == null || this.isOrganicChId(this.chID)))
+        {
+            this.chID = forceOrganicChidTo;
+        }
+        if (forceChidTo !== null)
+        {
+            this.chID = forceChidTo;
+        }
+
+        if (!this.chID && defaultChidID)
+        {
+            this.chID = defaultChidID;
+        }
+    },
+
+    setCrId : function(crID)
+    {
+        this.crID = crID;
+    },
+
+    isOrganicChId : function (chId)
+    {
+        return (chId >= 0 && chId < this.ORGANIC_CHID_THRESHOLD)
+    },
+
+    forceChId : function (forceTo)
+    {
+        if (forceTo !== false)
+            forceChidTo = forceTo;
+    },
+
+    getChID : function ()
+    {
+        return this.chID;
+    },
+
+    init : function (offerID, pHost, defaultChidID, pSetClientInfo)
+    {
+        //init variables
+        this.offerID = offerID;
+
+        if (pHost)
+            this.statisticsHost = pHost;
+
+        if (pSetClientInfo)
+        {
+            var IMWC = this.getIMWC(this.offerID);
+
+            if ((IMWC) && (typeof(IMWC) == "object"))
+            {
+                try
+                {
+                    this.clientVersion = IMWC.getFullVersion()
+                    this.clientBuildNumber = this.clientVersion.split(".");
+                    this.clientBuildNumber = this.clientBuildNumber[this.clientBuildNumber.length - 1];
+                }
+                catch(e)
+                {
+                }
+            }
+
+            if (this.clientVersion)
+            {
+                if (this.clientVersion.length > 0)
+                    this.clientVersion = this.clientVersion.substr(0, 5);
+            }
+        }
+
+        this.browserCode = this.getbrowserCode();
+        try
+        {
+            this.browserLang = navigator.browserLanguage ? navigator.browserLanguage : navigator.language;
+            this.browserLang = this.browserLang.substr(0, 2);
+        }
+        catch(e)
+        {
+        }
+
+        this.osCode = this.getOSCode();
+
+        //set the channel ID
+        this.setChID(defaultChidID);
+
+        //set the chid_dl cookie with chid value
+        if (this.chID)
+        {
+            this.setCookie("chid_dl", this.chID, this.COOKIE_EXPIRATION_DAYS, "/");
+        }
+
+        /* if the code is executed in iframe, send statistics with "errcode" = "iframe"
+            and show text on white background */
+        if (window.self !== window.top){
+            var emptyBody = document.body;
+            this.track('errCode', this.browserLang, null, null, 'iframe LP loading detected', 'iframe');
+            emptyBody.style.overflowY = 'hidden';
+            emptyBody.style.direction = 'ltr';
+            emptyBody.style.background = '#fff';
+            emptyBody.innerHTML = '<div style="color: #525252; font-size: 41px; margin-top: 200px; text-align: center;">Sorry, this product is temporary unavailable.</div>';
+            window.self.stop(); // stop loading the page
+        }
+    },
+
+    track : function (eventType, clientLang, offerID, psv, error, errCode, extID)
+    {
+        if (!this.EVENT_TYPE_MAP[eventType])
+            return;
+
+        if (eventType == 'hit')
+        {
+            //don't send statistics when opening the page, if the code is executed in iframe
+            if (window.self !== window.top)
+            {
+                return;
+            }
+            if (this.getCookie("chid_sh"))
+            {
+                return;
+            }
+            else
+            {
+                this.setCookie("chid_sh", "1", null);
+            }
+        }
+        eventID = this.EVENT_TYPE_MAP[eventType]['eventId'];
+        timeout = this.EVENT_TYPE_MAP[eventType]['eventTimeout'];
+
+        if (!clientLang)
+            clientLang = "";
+
+        var path = this.statisticsHost + "/statistics/oid/wgimage.gif";
+        path += "?chID=" + this.chID;
+        if (this.crID != null)
+        {
+            path += '&crID=' + this.crID;
+        }
+        path += "&offerID=" + (offerID ? offerID : this.offerID);
+        path += "&eventID=" + eventID;
+        path += "&browserTypeID=" + this.browserCode;
+        //path += "&browserLanguageCode=" + this.browserLang; - from webgate.
+        path += "&OSID=" + this.osCode;
+        path += "&clientVersion=" + this.clientVersion;
+        path += "&clientBuildNumber=" + this.clientBuildNumber;
+        path += "&clientLanguageCode=" + clientLang;
+        path += "&rand=" + Math.random();
+        if (psv)
+        {
+            path += '&psv=' + psv;
+        }
+        if (eventType == 'errCode')
+        {
+            path += '&error=' + error;
+            path += '&errCode=' + errCode;
+        }
+        if (extID)
+        {
+            path += '&ext_id=' + extID;
+        }
+        if (this.getURLParam("tgid") != null)
+        {
+            path += '&tgid=' + this.getURLParam("tgid");
+        }
+
+        var executeCreateImage = function()
+        {
+            this.chidPixel = (typeof(Image) == "object") ? new Image(1, 1) : document.createElement('img');
+
+            this.chidPixel.setAttribute('src', path);
+            this.chidPixel.style.display = 'none';
+        };
+
+        if (timeout)
+        {
+            setTimeout(executeCreateImage, timeout);
+        }
+        else
+        {
+            executeCreateImage();
+        }
+    }
+};

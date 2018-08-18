@@ -62,11 +62,13 @@ th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: rgba(255,0,0,.65);
+    background-color: rgba(255,0,0,.75);
     color: white;
 }
 
 .tabcontent {
+	background-color:white;
+	opacity:.9;
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
@@ -76,6 +78,7 @@ th {
 
 </style>
 
+<div class="content">
 	<div> 
 		<h2 >{{team1}} vs {{team2}}</h2>
 		<h6> {{type}}  Match</h6> 
@@ -160,6 +163,7 @@ th {
 				{% endfor %}
 			</table>
 		</div>
+</div>		
 		<script>
 			function openTeam(evt, teamName) {
 				var i, tabcontent, tablinks;
@@ -175,6 +179,7 @@ th {
 				evt.currentTarget.className += " active";
 			}
 		</script>
+
 {% endblock %}
 
 {% include "footer.html" %}

@@ -8,12 +8,25 @@
     	border-collapse: collapse;
     	width: 35%;
 	}
-	td,th{
+	
+	td{
 		border: 1px solid black;
 		border-collapse:collapse;
     	padding: 8px;
 	}
-	</style>
+	th{
+		border: 1px solid black;
+		border-collapse:collapse;
+    	padding: 8px;
+		background-color:rgba(255,0,50,0.75);
+		color:white;
+	}
+	h5{
+		color:green;
+	}
+</style>
+
+<div class="content">
 	<h2>{{name}}</h2><h6>{{team}}</h6></br>
 	<div>
 		<h5>Batting Career</h5></br>
@@ -70,4 +83,5 @@
 			</tr>
 		</table>
 	<div>
+</div>
 {% endblock %}

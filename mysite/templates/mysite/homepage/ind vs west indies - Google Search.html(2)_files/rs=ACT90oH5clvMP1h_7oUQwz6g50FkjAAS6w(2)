@@ -1,0 +1,8 @@
+/* _GlobalPrefix_ */
+/* _Module_:siu */
+try{
+s_fk("siu");var s_ZIc=function(a,b){a=b.ved||"";b=b.url;a&&(b=s_Yf("ved",b,a));b&&s__p("newSearch",b)},s_vEe={};s_if("siu",(s_vEe.init=function(){s_Oh("siu",{q:s_ZIc})},s_vEe));
+s__i("siu");s_fl();
+}catch(e){_DumpException(e)}
+/* _GlobalSuffix_ */
+// Google Inc.

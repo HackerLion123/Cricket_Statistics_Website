@@ -72,10 +72,28 @@ class Batting_log(models.Model):
 	player11 = models.CharField(max_length=120,null=True,blank=True)
 	
 	def get_attrb(self):
-		return [
-			self.player1.split(),self.player2.split(),self.player3.split(),self.player4.split(),self.player5.split(),self.player6.split(),
-			self.player7.split(),self.player8.split(),self.player9.split(),self.player10.split(),self.player11.split()
-		]
+		(p2,p3,p4,p5,p6,p7,p8,p9,p10,p11) = ([],[],[],[],[],[],[],[],[],[])
+		if self.player2:
+			p2 = self.player2.split(':')
+		if self.player3:
+			p3 = self.player3.split(':')
+		if self.player4:
+			p4 = self.player4.split(':')
+		if self.player5:
+			p5 = self.player5.split(':')
+		if self.player6:
+			p6 = self.player6.split(':')
+		if self.player7:
+			p7 = self.player7.split(':')
+		if self.player8:
+			p8 = self.player8.split(':')
+		if self.player9:
+			p9 = self.player9.split(':')
+		if self.player10:
+			p10 = self.player10.split(':')
+		if self.player11:
+			p11 = self.player11.split(':')
+		return [ self.player1.split(':'),p2,p3,p4,p5,p6,p7,p8,p9,p10,p11]
 
 class Bowling_log(models.Model):
 	player1 = models.CharField(max_length=120)
@@ -86,7 +104,7 @@ class Bowling_log(models.Model):
 	
 
 	def get_attrb(self):
-		return [self.player1.split(),self.player2.split(),self.player3.split(),self.player4.split(),self.player5.split()]
+		return [self.player1.split(':'),self.player2.split(':'),self.player3.split(':'),self.player4.split(':'),self.player5.split(':')]
 
 class Match(models.Model):
 	team1 =  models.CharField(max_length=120)

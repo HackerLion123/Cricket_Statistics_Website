@@ -1,0 +1,245 @@
+rca-logo h2 {
+  margin: 0px;
+  padding: 20px 0px;
+  font-weight: normal; }
+  .rca-logo h2 span {
+    vertical-align: middle;
+    display: inline-block; }
+  .rca-logo h2 img {
+    max-width: 100%;
+    max-height: 50px;
+    vertical-align: middle;
+    padding: 5px; }
+  //tabs
+
+  
+  .nav-collapse{
+    width:750px;
+    height:20px;
+  }
+  
+  .tabs {
+    margin:  0;
+    padding-left: 100px;
+    list-style: none;
+    display: table; /* [1] */
+    table-layout: fixed; /* [2] */
+    /* [3] */
+}
+
+    .tabs__item {
+        width: 100px;
+        float: center;
+
+    }
+
+    @media screen and (min-width: 40em) {
+        .tabs__item {
+          display: table-cell; /* [4] */
+          float: none;
+          width: auto;
+
+        }
+    }
+
+        .tabs__link {
+            display: block; /* [5] */
+        }
+
+**
+ * Primary nav. Extends `.tabs`.
+ *
+ * 1. Stop tabs’ corners leaking out beyond our 4px round.
+ */
+.primary-nav {
+    text-align: center;
+    border-radius: 0;
+    padding-right:25px; 
+    overflow: hidden; 
+
+    /* [1] */
+}
+
+        .primary-nav a {
+            padding: .35em 1em 1em;
+            color: white;
+            background: #bec7d6;
+            color: #fff;
+            text-decoration: none;
+            border-right: 1px solid #000;
+            font-family: Share, Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            font-size: 1.75em;
+            width:225px;
+            height:8px;
+
+
+        }
+
+        .primary-nav a:hover {
+            color: black;
+            background: #f8d800;
+        }
+
+   /** https://codepen.io/chorijan/pen/aqDpo?q=navigation+tabs&limit=all&type=type-pens**/
+  /** box **/
+  .box {
+    background-color: lightgrey;
+    width: 720px;
+    height: 525px;
+    border: 1px solid green;
+    padding: 25px;
+    margin-left: 350px;
+    margin-top: 50px;
+}    
+
+.box img {
+    border-radius: 8px;
+}
+
+.box-bottom-text {
+    background-color: lightgrey;
+    width: 740px;
+    height: 20px;
+    border: 1px solid green;
+    padding: 15px;
+    margin-left: 350px;
+}    
+.box-bottom-text h2 {
+    padding: 0px 45px 5px 15px;
+    padding-bottom: 25px;
+    text-align: left;
+    color: black;
+    margin: 0px; }  
+
+
+  .box-bottom {
+    background-color: lightgrey;
+    width: 750px;
+    height: 500px;
+    border: 1px solid green;
+    margin-left: 350px;
+    margin-bottom: 5px;
+    padding: 10px;
+
+}    
+/** bottom image slider **/
+
+
+.slides {
+    padding: 0;
+    width: 750px;
+    height: 500px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+}
+
+.slides * {
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.slides input { display: none; }
+
+.slide-container { display: block; }
+
+.slide {
+    top: 0;
+    opacity: 0;
+    width: 750px;
+    height: 500px;
+    display: block;
+    position: absolute;
+
+    transform: scale(0);
+
+    transition: all .7s ease-in-out;
+}
+
+.slide img {
+    width: 750px;
+    height: 500px;
+
+}
+
+.nav label {
+    width: 200px;
+    height: 100%;
+    display: none;
+    position: absolute;
+
+    opacity: 0;
+    z-index: 9;
+    cursor: pointer;
+
+    transition: opacity .2s;
+
+    color: #FFF;
+    font-size: 156pt;
+    text-align: center;
+    line-height: 380px;
+    font-family: "Varela Round", sans-serif;
+    background-color: rgba(255, 255, 255, .3);
+    text-shadow: 0px 0px 15px rgb(119, 119, 119);
+}
+
+.slide:hover + .nav label { opacity: 0.5; }
+
+.nav label:hover { opacity: 1; }
+
+.nav .next { right: 0; }
+
+input:checked + .slide-container  .slide {
+    opacity: 1;
+
+    transform: scale(1);
+
+    transition: opacity 1s ease-in-out;
+}
+
+input:checked + .slide-container .nav label { display: block; }
+
+.nav-dots {
+  width: 100%;
+  bottom: 9px;
+  height: 11px;
+  display: block;
+  position: absolute;
+  text-align: center;
+}
+
+.nav-dots .nav-dot {
+  top: -5px;
+  width: 11px;
+  height: 11px;
+  margin: 0 4px;
+  position: relative;
+  border-radius: 100%;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.nav-dots .nav-dot:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+input#img-1:checked ~ .nav-dots label#img-dot-1,
+input#img-2:checked ~ .nav-dots label#img-dot-2,
+input#img-3:checked ~ .nav-dots label#img-dot-3,
+input#img-4:checked ~ .nav-dots label#img-dot-4,
+input#img-5:checked ~ .nav-dots label#img-dot-5,
+input#img-6:checked ~ .nav-dots label#img-dot-6 {
+  background: rgba(0, 0, 0, 0.8);
+}
+body 
+   {
+   background-image: url ("live-cricket-play-ground-hd-wallpapers-free.jpg");
+   background-repeat: no-repeat;
+    background-attachment: fixed;
+    }

@@ -2,6 +2,7 @@ from mysite.models import *
 
 """ Class to create/update Player and Team Models """
 class Statistics:
+	total_score = {}
 	def __init__(self):
 		self.Match_object = Match.objects.all()
 
@@ -65,8 +66,8 @@ class Statistics:
 				if not Player.objects.filter(name=c[0]):
 					overs = c[1]
 					wickets = c[2]
-					streak = c[1]
-					b = Player(name=c[0],team=Team.objects.get(name=team),matchplayed=1,overs=overs,economy = economy,wickets=wickets,wicket_streak=streak)
+					streak = c[2]
+					b = Player(name=c[0].lower(),team=Team.objects.get(name=team),matchplayed=1,overs=overs,economy = economy,wickets=wickets,wicket_streak=streak)
 					b.save()
 				elif Player.objects.filter(name=c[0]):
 					b = Player.objects.filter(name=c[0])
@@ -77,8 +78,8 @@ class Statistics:
 						b.wickets += c[2]
 						if economy < b.economy:
 							b.economy = economy
-						if c[1] > b.wicket_streak:
-							b.wicket_streak = c[1]
+						if c[2] > b.wicket_streak:
+							b.wicket_streak = c[2]
 					else:
 						b.overs = c[1]
 						b.wickets = c[2]
@@ -90,12 +91,16 @@ class Statistics:
 	def batting(self,m,te):
 		hundred = 0
 		fifty = 0
+		score = 0
+		over = 0
 		for c in m:
 			if c:
 				if not Player.objects.filter(name=c[0]):
-					print(c[0])	
+					print(c)	
 					(c[1],c[2],c[3]) = (int(c[1]),int(c[2]),int(c[3]))
-					runs = c[1]						
+					runs = c[1]
+					score += c[1]
+					over += c[2]						
 					if c[1] > 50:
 						fifty = 1
 						if c[1] > 100:
@@ -107,14 +112,16 @@ class Statistics:
 					except Exception as e:
 						print(e)
 					high_score = c[1]
-					t = Player(c[0],te,runs,fifty,hundred,match_played,averge,runrate,high_score)
+					t = Player(c[0].lower(),te,runs,fifty,hundred,match_played,averge,runrate,high_score)
 					t.save()
 
 				elif Player.objects.filter(name=c[0]):
 					p = Player.objects.filter(name=c[0])
 					p = p[0]
 					(c[1],c[2],c[3]) = (int(c[1]),int(c[2]),int(c[3]))
-					runs = c[1]	
+					runs = c[1]
+					score += c[1]
+					over += c[2]	
 					if c[1] > 50:
 						fifty = 1
 						if c[1] > 100:
@@ -133,7 +140,7 @@ class Statistics:
 					if runs > p.HighScore:
 						p.HighScore = runs
 					p.save()
-					
+				self.total_score[c[0]] = {'total':score,'over':(over//6)}	
 
 
 """def generate():

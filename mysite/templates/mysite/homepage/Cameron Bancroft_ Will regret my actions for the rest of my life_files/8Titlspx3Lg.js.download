@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["CIhnX"]); }
+
+__d("ReactSelectorUtils",["React"],(function(a,b,c,d,e,f){"use strict";__p&&__p();a={processMenuItems:function(a,c){var d=arguments.length<=2||arguments[2]===undefined?!1:arguments[2],e=void 0,f=b("React").Children.map(a,function(a){if(a){var d=a.props.value===c;a=b("React").cloneElement(a,{selected:d});d&&(e=a);return a}});return{items:f,selectedItem:e}},processMultiMenuItems:function(a,c){__p&&__p();var d=arguments.length<=2||arguments[2]===undefined?!1:arguments[2],e=[],f=a;c&&(f=b("React").Children.map(a,function(a){if(a){var d=c.some(function(b){return b===a.props.value});a=b("React").cloneElement(a,{selected:d});d&&e.push(a);return a}}));return{items:f,selectedItems:e}}};e.exports=a}),null);

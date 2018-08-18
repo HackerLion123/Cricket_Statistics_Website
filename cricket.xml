@@ -1,0 +1,80 @@
+<match>
+	<team>
+		<team_name>India</team_name>
+		<batting>
+			<player>
+				<name>Roney</name>
+				<runs>20</runs>
+				<balls>10</balls>
+				<four>3</four>
+				<six>1</six>
+				<out>
+					<flag>True</flag>
+					<des>lbw</des>
+				</out>
+			</player>
+
+			<player>
+				<name></name>
+				<runs></runs>
+				<balls></balls>
+				<four></four>
+				<six></six>
+			</player>
+
+			<player>
+				<name></name>
+				<runs></runs>
+				<balls></balls>
+				<four></four>
+				<six></six>
+			</player>
+		</batting>
+		<bowling>
+			<player>
+				<name></name>
+				<overs></overs>
+				<wicket></wicket>
+			</player>
+		</bowling>
+		<score>
+			250
+		</score>
+		<overs>
+			20.0
+		</overs>
+	</team>
+	<team>
+		<team_name>Pakistan</team_name>
+		<batting>
+			<player>
+				<name></name>
+				<runs></runs>
+				<balls></balls>
+				<four></four>
+				<six></six>
+			</player>
+
+			<player>
+				<name></name>
+				<runs></runs>
+				<balls></balls>
+				<four></four>
+				<six></six>
+			</player>
+
+			<player>
+				<name></name>
+				<runs></runs>
+				<balls></balls>
+				<four></four>
+				<six></six>
+			</player>
+		</batting>
+
+		<bowling>
+		</bowling>
+	</team>
+	<type>T20</type>
+	<match_dec>India vs Pakistan</match_dec>
+</match>

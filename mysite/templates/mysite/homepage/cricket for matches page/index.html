@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ScoreBoard</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/blueTheme.css"/> 
+
+  </head>
+  <body background="A:\Sem 6\OOAD proj\website\cricket for matches page\57d1552e0a02f.jpg">
+    <!--Whole Container -->
+    <div class="rca-container">
+
+      <!--Logo Holder-->
+      <div class="rca-row">
+        <div class="rca-column-12">
+          <div class="rca-logo"> </a>
+          </div>
+        </div>
+      </div>
+      
+
+
+      <!--Widget Outer-->
+      <div class="rca-row">
+        <div class="rca-column-12">
+          <!--Widget Inner -->
+          <div class="rca-menu-scroll rca-left-border">
+            <ul class="rca-season-list">
+              <li>
+                <a href="A:\Sem 6\OOAD proj\website\reedited website\home.html">
+                  HOME
+                </a>
+              </li>
+              <li>
+                <a href="A:\Sem 6\OOAD proj\website\cricket for matches page\index.html">
+                  MATCHES
+                </a>
+              </li>
+              <li>
+                <a href="A:\Sem 6\OOAD proj\website\cricket for matches page\index.html">
+                  TEAMS
+                </a>
+              </li>
+              <li>
+                <a href="A:\Sem 6\OOAD proj\website\cricket for comparision page -\index.html">
+                  COMPARISION
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+		<table width="400" align="center" cellspacing="50"  margin-right="100px">
+  <tr>
+    <td><p><img src="A:\Sem 6\OOAD proj\website\Cricket original\extra\1200px-Flag_of_India.svg.png" alt="india" width="510" height="336" /></p>
+    <p align="center" class="style1"> INDIA</p></td>
+    <td><p><img src="A:\Sem 6\OOAD proj\website\Cricket original\extra\2000px-Flag_of_South_Africa.svg.png" width="510" height="336" alt="sa" /></p>
+    <p align="center" class="style1">SOUTH AFRICA</p></td>
+  </tr>
+  <tr>
+    <td><p><img src="A:\Sem 6\OOAD proj\website\Cricket original\extra\Heard_Island_and_McDonald_Islands_Flag.jpg" width="510" height="400" alt="australia" /></p>
+    <p align="center" class="style1"> AUSTRALIA</p></td>
+    <td><p align="center"><img src="A:\Sem 6\OOAD proj\website\Cricket original\extra\west-indies-cricket-5-x-3-flag-8166-p.jpg" width="510" height="400" alt="westind" /></p>
+    <p align="center" class="style1">WEST INDIES</p></td>
+  </tr>
+  <tr>
+    <td><p><img src="A:\Sem 6\OOAD proj\website\Cricket original\extra\2000px-Flag_of_Bangladesh.svg.png" width="510" height="400" alt="ban" /></p>
+    <p align="center" class="style1">BANGALADESH</p></td>
+    <td><p><img src="A:\Sem 6\OOAD proj\website\Cricket original\extra\2000px-Flag_of_Pakistan.svg.png" width="510" height="400" alt="pak" /></p>
+    <p align="center" class="style1">PAKISTAN</p></td>
+  </tr>
+</table>
+      <!--Widget Outer-->
+      <div class="rca-row">
+        <!--Widget Inner -->
+        <div class="rca-column-4">
+          <!--Live Season-->
+          <div class="rca-menu-widget rca-live-season rca-left-border"> </div>
+        </div>
+        
+        <!--Widget Inner -->
+        <div class="rca-column-4">
+          <!--Upcoming Match-->
+          <div class="rca-menu-widget rca-left-border"> </div>
+        </div>
+
+        <!--Widget Inner -->
+        <div class="rca-column-4">
+          <!--Upcoming Match-->
+          <div class="rca-menu-widget rca-left-border"> </div>
+        </div>
+      </div>
+
+      <div class="rca-row">
+        <div class="rca-column-12">
+          <div class="rca-blog-image"> </div>
+        </div>
+      </div>
+      <div class="rca-row">
+        <div class="rca-column-3">
+          <!--Match Series-->
+          
+          <div class="rca-blog-image"> </div>
+        </div>
+</div>
+</div>
+
+      <div class="rca-row">
+        <div class="rca-column-12"> </div>
+      </div>
+
+
+      <div class="rca-row">
+        <div class="rca-column-8"> </div>
+</div>
+    </div>
+
+   <script>
+      function showTab(event) {
+        var sourceParent = event.parentElement.parentElement;
+        var sourceChilds = sourceParent.getElementsByClassName("rca-tab-content");
+        var sourceLinkParent = sourceParent.getElementsByClassName("rca-tab-link");
+        for (var i=0; i < sourceChilds.length; i++) {
+          sourceChilds.item(i).classList.remove("active");
+        }
+        for (var i=0; i < sourceLinkParent.length; i++) {
+          sourceLinkParent.item(i).classList.remove("active");
+        }
+        var dataTab= event.getAttribute("data-tab");
+
+        event.classList.add("active");
+        // document.getElementById(dataTab).className = tabClass + ' active';
+        document.getElementById(dataTab).className += ' active';
+      }
+
+    </script>
+
+  </body>
+</html>
